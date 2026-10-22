@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Jira My Tasks</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-size: 13px;
+      min-width: 320px;
+      max-width: 420px;
+      background: #fff;
+      color: #172b4d;
+    }
+    header {
+      padding: 12px 16px;
+      border-bottom: 1px solid #dfe1e6;
+      font-weight: 600;
+      font-size: 14px;
+      color: #0052cc;
+    }
+    #task-list {
+      list-style: none;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    #task-list li {
+      padding: 10px 16px;
+      border-bottom: 1px solid #f4f5f7;
+    }
+    #task-list li:last-child { border-bottom: none; }
+    #task-list li:not(.status-header) {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .pending-toggle {
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    #task-list li:not(.status-header) a {
+      flex: 1;
+      min-width: 0;
+    }
+    .md-button {
+      flex-shrink: 0;
+      min-width: 28px;
+      padding: 2px 6px;
+      font-size: 10px;
+      font-weight: 700;
+      color: #0052cc;
+      background: #fff;
+      border: 1px solid #dfe1e6;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    .md-button:hover:not(:disabled) { background: #deebff; }
+    .md-button:disabled { cursor: default; color: #6b778c; }
+    #task-list a {
+      text-decoration: none;
+      color: #172b4d;
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+    }
+    #task-list a:hover { color: #0052cc; }
+    .key {
+      font-weight: 600;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .key.status-pending { color: #6b778c; }
+    .key.status-in-progress { color: #0052cc; }
+    .key.status-done { color: #006644; }
+    .key.status-pending-implementation { color: #974f0c; }
+    .summary {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      flex: 1;
+    }
+    .resolution-date {
+      margin-left: auto;
+      flex-shrink: 0;
+      font-size: 11px;
+      color: #6b778c;
+      white-space: nowrap;
+    }
+    .status-header {
+      padding: 6px 16px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: #6b778c;
+      background: #f4f5f7;
+      border-bottom: 1px solid #dfe1e6;
+    }
+    #error {
+      padding: 8px 16px;
+      font-size: 12px;
+      color: #bf2600;
+      background: #ffebe6;
+      border-bottom: 1px solid #ffbdad;
+    }
+    #hidden-note {
+      padding: 8px 16px;
+      font-size: 11px;
+      color: #6b778c;
+      border-top: 1px solid #dfe1e6;
+    }
+    #hidden-note a { color: #0052cc; }
+    #empty {
+      padding: 24px 16px;
+      text-align: center;
+      color: #6b778c;
+    }
+  </style>
+</head>
+<body>
+  <header>Mis tareas en Jira</header>
+  <p id="error" hidden></p>
+  <ul id="task-list"></ul>
+  <p id="empty" hidden>Sin tareas abiertas.</p>
+  <p id="hidden-note" hidden><span id="hidden-count"></span> · <a href="#" id="open-options">Configurar</a></p>
+  <script src="shared.js"></script>
+  <script src="markdown.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>
